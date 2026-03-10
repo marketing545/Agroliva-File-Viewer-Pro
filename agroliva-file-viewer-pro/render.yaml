@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: agroliva-file-viewer
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: APP_URL
+        sync: false # Set this in the Render dashboard to your public URL
+      - key: GEMINI_API_KEY
+        sync: false # Set this in the Render dashboard to your API key
+    disk:
+      name: agroliva-data
+      mountPath: /opt/render/project/src/uploads
+      sizeGB: 1
